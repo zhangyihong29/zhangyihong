@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Research & Academic Works | ZHANG YIHONG</title>
+  <title>Contact & Links | ZHANG YIHONG</title>
   <style>
     :root {
       color-scheme: dark;
@@ -15,6 +15,7 @@
       --radius-xl: 30px;
       --radius-lg: 24px;
       --shadow-soft: 0 24px 80px rgba(0, 0, 0, 0.34);
+      --shadow-hover: 0 36px 90px rgba(0, 0, 0, 0.44);
       --font-cn: "Source Han Serif SC", "Noto Serif SC", "Songti SC", serif;
       --font-en: "Times New Roman", Times, serif;
       --font-trajan: "Trajan Pro", "Trajan Pro 3", "Cinzel", Georgia, serif;
@@ -50,16 +51,16 @@
       background-image: var(--active-bg);
       background-size: cover;
       background-position: center;
-      filter: blur(0.5px) saturate(0.98) brightness(0.58) contrast(1.05);
+      filter: blur(0.5px) saturate(0.98) brightness(0.56) contrast(1.05);
       transform: scale(1.006);
     }
 
     body::after {
       z-index: 1;
       background:
-        radial-gradient(circle at 20% 12%, rgba(255,255,255,.055), transparent 30%),
-        radial-gradient(circle at 82% 20%, rgba(255,255,255,.04), transparent 28%),
-        linear-gradient(180deg, rgba(0,0,0,.34), rgba(0,0,0,.52) 56%, rgba(7,7,7,.82));
+        radial-gradient(circle at 18% 12%, rgba(255,255,255,.06), transparent 30%),
+        radial-gradient(circle at 82% 18%, rgba(255,255,255,.045), transparent 30%),
+        linear-gradient(180deg, rgba(0,0,0,.34), rgba(0,0,0,.54) 58%, rgba(7,7,7,.84));
     }
 
     a {
@@ -135,7 +136,8 @@
       letter-spacing: .055em;
     }
 
-    .nav a:hover {
+    .nav a:hover,
+    .nav a[aria-current="page"] {
       color: var(--fg);
       background: rgba(255,255,255,.09);
     }
@@ -144,16 +146,16 @@
       padding: clamp(42px, 7vw, 92px) 0 28px;
     }
 
-    .research-hero {
+    .contact-hero {
       display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr);
+      grid-template-columns: minmax(0, 1.08fr) minmax(280px, .92fr);
       gap: 18px;
       align-items: stretch;
       margin-bottom: 18px;
     }
 
-    .research-intro,
-    .research-guide {
+    .contact-intro,
+    .contact-guide {
       border-radius: var(--radius-xl);
       padding: clamp(22px, 3.6vw, 40px);
     }
@@ -185,7 +187,7 @@
       line-height: 1.9;
     }
 
-    .research-guide strong {
+    .contact-guide strong {
       display: block;
       margin-bottom: 14px;
       color: rgba(245,245,245,.92);
@@ -195,150 +197,104 @@
       text-transform: uppercase;
     }
 
-    .research-guide ul {
-      display: grid;
-      gap: 10px;
+    .contact-guide p {
       margin: 0;
-      padding: 0;
-      list-style: none;
-      color: rgba(245,245,245,.7);
+      color: rgba(245,245,245,.68);
       font-size: 14px;
-      line-height: 1.65;
+      line-height: 1.75;
     }
 
-    .research-tabs {
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .contact-card {
+      position: relative;
+      min-height: 196px;
       display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 18px 0;
+      flex-direction: column;
+      gap: 16px;
+      padding: 24px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: transform 260ms ease, border-color 260ms ease, box-shadow 260ms ease;
     }
 
-    .research-tab {
+    .contact-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 18% 12%, rgba(255,255,255,.14), transparent 28%),
+        linear-gradient(135deg, rgba(255,255,255,.08), transparent 42%);
+      opacity: .64;
+      pointer-events: none;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255,255,255,.24);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .contact-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-kicker {
+      color: rgba(245,245,245,.55);
+      font-family: var(--font-en);
+      font-size: 12px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .contact-card h2 {
+      margin: 0;
+      font-family: var(--font-cn);
+      font-size: clamp(24px, 3vw, 34px);
+      font-weight: 400;
+      line-height: 1.16;
+      letter-spacing: -.045em;
+    }
+
+    .contact-value {
+      margin: 0;
+      color: rgba(245,245,245,.7);
+      font-family: var(--font-en);
+      font-size: 15px;
+      line-height: 1.55;
+      overflow-wrap: anywhere;
+    }
+
+    .contact-action {
+      width: fit-content;
+      margin-top: auto;
       display: inline-flex;
       align-items: center;
       min-height: 32px;
       padding: 0 13px;
       border: 1px solid var(--line);
       border-radius: 999px;
-      background: rgba(255,255,255,.07);
-      color: rgba(245,245,245,.76);
+      background: rgba(255,255,255,.08);
+      color: rgba(245,245,245,.9);
       font-family: var(--font-en);
       font-size: 12px;
       letter-spacing: .08em;
       text-transform: uppercase;
     }
 
-    .research-list {
-      display: grid;
-      gap: 14px;
-    }
-
-    .research-record {
-      position: relative;
-      display: grid;
-      grid-template-columns: 132px minmax(0, 1fr);
-      gap: 22px;
-      padding: clamp(20px, 3vw, 30px);
+    .template-note {
+      margin: 18px 0 0;
+      padding: 18px 20px;
       border-radius: var(--radius-lg);
-      overflow: hidden;
-    }
-
-    .research-record::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 16% 18%, rgba(255,255,255,.13), transparent 26%),
-        linear-gradient(135deg, rgba(255,255,255,.08), transparent 44%);
-      opacity: .58;
-      pointer-events: none;
-    }
-
-    .research-type,
-    .research-content {
-      position: relative;
-      z-index: 1;
-    }
-
-    .research-type {
-      color: rgba(245,245,245,.55);
-      font-family: var(--font-en);
-      font-size: 12px;
-      letter-spacing: .16em;
-      line-height: 1.55;
-      text-transform: uppercase;
-    }
-
-    .research-content h2 {
-      margin: 0 0 12px;
-      font-family: var(--font-cn);
-      font-size: clamp(22px, 2.6vw, 34px);
-      font-weight: 400;
-      line-height: 1.22;
-      letter-spacing: -.045em;
-    }
-
-    .research-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 0 0 14px;
-      padding: 0;
-      list-style: none;
-    }
-
-    .research-meta li {
-      padding: 6px 10px;
-      border: 1px solid rgba(255,255,255,.11);
-      border-radius: 999px;
-      background: rgba(0,0,0,.14);
-      color: rgba(245,245,245,.7);
+      color: rgba(245,245,245,.62);
       font-size: 13px;
-      line-height: 1;
-    }
-
-    .research-abstract {
-      margin: 0 0 18px;
-      color: rgba(245,245,245,.7);
-      font-size: 15px;
-      line-height: 1.78;
-    }
-
-    .attachment-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      align-items: center;
-    }
-
-    .attachment-link,
-    .attachment-pending {
-      display: inline-flex;
-      align-items: center;
-      min-height: 30px;
-      padding: 0 12px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      font-family: var(--font-en);
-      font-size: 12px;
-      letter-spacing: .06em;
-    }
-
-    .attachment-link {
-      background: rgba(255,255,255,.09);
-      color: rgba(245,245,245,.9);
-    }
-
-    .attachment-pending {
-      background: rgba(255,255,255,.035);
-      color: rgba(245,245,245,.48);
-    }
-
-    .research-note {
-      margin: 16px 0 0;
-      color: rgba(245,245,245,.58);
-      font-size: 13px;
-      line-height: 1.65;
+      line-height: 1.7;
     }
 
     .site-footer {
@@ -363,15 +319,8 @@
         overflow-x: auto;
       }
 
-      .research-hero,
-      .research-record {
+      .contact-hero {
         grid-template-columns: 1fr;
-      }
-
-      .research-type {
-        display: flex;
-        gap: 8px;
-        align-items: center;
       }
     }
 
@@ -382,9 +331,10 @@
       }
 
       .site-header,
-      .research-intro,
-      .research-guide,
-      .research-record,
+      .contact-intro,
+      .contact-guide,
+      .contact-card,
+      .template-note,
       .site-footer {
         border-radius: 22px;
       }
@@ -404,111 +354,84 @@
       </a>
       <nav class="nav" aria-label="Primary navigation">
         <a href="index.html">Home</a>
-        <a href="research.html" aria-current="page">Research</a>
+        <a href="research.html" target="_blank" rel="noopener">Research</a>
         <a href="index.html#cv">CV</a>
-        <a href="contact.html" target="_blank" rel="noopener">Contact</a>
+        <a href="contact.html" aria-current="page">Contact</a>
       </nav>
     </header>
 
     <main>
-      <section class="research-hero">
-        <div class="research-intro glass-panel">
-          <p class="eyebrow">Research Portfolio</p>
-          <h1>Research & Academic Works</h1>
-          <p class="lead">这里将作为已发表研究与学术成果的独立展示页面。每一条成果都预留题目、发表刊物或项目来源、时间、简介和附件入口，未来可以继续加入论文、翻译、书评、会议论文、研究报告和其它学术材料。</p>
+      <section class="contact-hero">
+        <div class="contact-intro glass-panel">
+          <p class="eyebrow">Contact & Personal Links</p>
+          <h1>Contact & Online Profiles</h1>
+          <p class="lead">这里集中展示我的邮箱、个人主页和社交媒体链接。后续如果有新的学术主页、作品集、数据库页面或其它网址，可以继续添加到这个页面。</p>
         </div>
-        <aside class="research-guide glass-panel">
-          <strong>Entry Fields</strong>
-          <ul>
-            <li>题目 / Title：成果的正式名称。</li>
-            <li>刊物 / Venue：期刊、报纸、会议、出版社或项目来源。</li>
-            <li>时间 / Date：发表、录用、完成或展示时间。</li>
-            <li>附件 / Attachment：PDF、DOCX、图片、网页链接或补充材料。</li>
-          </ul>
+        <aside class="contact-guide glass-panel">
+          <strong>Preferred Contact</strong>
+          <p>学术、求职和正式联系建议优先使用谷歌邮箱；社交平台和个人主页链接用于身份展示、照片记录和公开资料补充。</p>
         </aside>
       </section>
 
-      <div class="research-tabs" aria-label="Research categories">
-        <span class="research-tab">Articles</span>
-        <span class="research-tab">Translations</span>
-        <span class="research-tab">Academic Works</span>
-        <span class="research-tab">Attachments</span>
-      </div>
+      <section class="contact-grid" aria-label="Contact links">
+        <a class="contact-card glass-panel" href="mailto:zhangyihong29@gmail.com">
+          <span class="contact-kicker">Email</span>
+          <h2>谷歌邮箱</h2>
+          <p class="contact-value">zhangyihong29@gmail.com</p>
+          <span class="contact-action">Send Email</span>
+        </a>
 
-      <section class="research-list" aria-label="Research records">
-        <article class="research-record glass-panel">
-          <div class="research-type">Article<br>论文</div>
-          <div class="research-content">
-            <h2>题目待补充 / Article Title To Be Added</h2>
-            <ul class="research-meta">
-              <li>发表刊物：待补充</li>
-              <li>时间：待补充</li>
-              <li>状态：预留条目</li>
-            </ul>
-            <p class="research-abstract">这里可以写一段 80–150 字左右的介绍，包括研究问题、材料来源、方法、主要观点和与个人研究方向的关系。目前该条目为占位示例，等待正式成果发布后替换。</p>
-            <div class="attachment-row">
-              <span class="attachment-pending">附件待上传</span>
-            </div>
-          </div>
-        </article>
+        <a class="contact-card glass-panel" href="mailto:yihongzhang29@qq.com">
+          <span class="contact-kicker">Email</span>
+          <h2>QQ邮箱</h2>
+          <p class="contact-value">yihongzhang29@qq.com</p>
+          <span class="contact-action">Send Email</span>
+        </a>
 
-        <article class="research-record glass-panel">
-          <div class="research-type">Translation<br>翻译</div>
-          <div class="research-content">
-            <h2>译文题目待补充 / Translation Title To Be Added</h2>
-            <ul class="research-meta">
-              <li>发表刊物：待补充</li>
-              <li>时间：待补充</li>
-              <li>原文信息：待补充</li>
-            </ul>
-            <p class="research-abstract">这里可以介绍原文作者、原文出处、翻译主题、文本价值以及译文与东南亚史、跨文化交流或相关研究兴趣之间的联系。</p>
-            <div class="attachment-row">
-              <span class="attachment-pending">附件待上传</span>
-            </div>
-          </div>
-        </article>
+        <a class="contact-card glass-panel" href="https://www.linkedin.com/in/yihongzhang29" target="_blank" rel="noopener">
+          <span class="contact-kicker">Professional Profile</span>
+          <h2>LinkedIn 领英</h2>
+          <p class="contact-value">www.linkedin.com/in/yihongzhang29</p>
+          <span class="contact-action">Open Profile</span>
+        </a>
 
-        <article class="research-record glass-panel">
-          <div class="research-type">Other Work<br>其它成果</div>
-          <div class="research-content">
-            <h2>学术成果待补充 / Academic Work To Be Added</h2>
-            <ul class="research-meta">
-              <li>类型：会议论文 / 书评 / 报告 / 课程项目</li>
-              <li>机构或平台：待补充</li>
-              <li>时间：待补充</li>
-            </ul>
-            <p class="research-abstract">这里可以放置未必属于正式论文或翻译的学术成果，例如会议发言、研究报告、书评、档案整理、数字人文项目或课程研究作品。</p>
-            <div class="attachment-row">
-              <span class="attachment-pending">附件待上传</span>
-            </div>
-          </div>
+        <a class="contact-card glass-panel" href="https://www.facebook.com/share/1DWhJh9LLx/?mibextid=wwXIfr" target="_blank" rel="noopener">
+          <span class="contact-kicker">Social Profile</span>
+          <h2>Facebook 脸书</h2>
+          <p class="contact-value">facebook.com/share/1DWhJh9LLx/</p>
+          <span class="contact-action">Open Profile</span>
+        </a>
+
+        <a class="contact-card glass-panel" href="https://www.instagram.com/redovarish/" target="_blank" rel="noopener">
+          <span class="contact-kicker">Photo Archive</span>
+          <h2>Instagram 照片墙</h2>
+          <p class="contact-value">instagram.com/redovarish/</p>
+          <span class="contact-action">Open Gallery</span>
+        </a>
+
+        <article class="contact-card glass-panel">
+          <span class="contact-kicker">Future Link</span>
+          <h2>后续网址</h2>
+          <p class="contact-value">可继续添加 ORCID、Google Scholar、个人作品集、学术数据库或其它主页。</p>
+          <span class="contact-action">Reserved</span>
         </article>
       </section>
 
       <!--
-      后续新增成果时，可以复制下面模板到 research-list 内：
-      <article class="research-record glass-panel">
-        <div class="research-type">Article<br>论文</div>
-        <div class="research-content">
-          <h2>正式题目</h2>
-          <ul class="research-meta">
-            <li>发表刊物：刊物名称</li>
-            <li>时间：2026</li>
-            <li>状态：已发表</li>
-          </ul>
-          <p class="research-abstract">这里写成果简介。</p>
-          <div class="attachment-row">
-            <a class="attachment-link" href="research-files/your-file.pdf" target="_blank" rel="noopener">View Attachment</a>
-          </div>
-        </div>
-      </article>
+      后续新增网址时，可以复制下面模板到 contact-grid 内：
+      <a class="contact-card glass-panel" href="https://example.com" target="_blank" rel="noopener">
+        <span class="contact-kicker">Website Type</span>
+        <h2>网站名称</h2>
+        <p class="contact-value">example.com/your-page</p>
+        <span class="contact-action">Open Link</span>
+      </a>
       -->
 
-      <p class="research-note">提示：正式添加附件时，建议在 GitHub 仓库中建立 research-files 文件夹，把 PDF、DOCX 或图片上传到该文件夹，再把上方附件路径改成 research-files/文件名。</p>
+      <p class="template-note glass-panel">提示：新增网址时，建议使用完整链接，例如 https://example.com；如果是邮箱，则使用 mailto:you@example.com。页面中的卡片可以自由复制，保持同样结构即可。</p>
     </main>
 
     <footer class="site-footer glass-panel">
-      <span>© <span id="year">2026</span> ZHANG YIHONG. Research and academic works archive.</span>
+      <span>© <span id="year">2026</span> ZHANG YIHONG. Contact and personal profiles.</span>
       <a href="index.html">Back to Home</a>
     </footer>
   </div>
