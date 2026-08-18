@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Visual Archive | Zhang Yihong</title>
+  <style>
+    :root {
+      --bg: #060606;
+      --fg: #f5f2ea;
+      --muted: rgba(245, 242, 234, 0.62);
+      --muted-2: rgba(245, 242, 234, 0.46);
+      --line: rgba(255, 255, 255, 0.14);
+      --radius-xl: 34px;
+      --radius-lg: 24px;
+      --shadow-soft: 0 24px 80px rgba(0, 0, 0, 0.34);
+      --shadow-hover: 0 36px 90px rgba(0, 0, 0, 0.44);
+      --font-cn: "Source Han Serif SC", "Noto Serif SC", "Songti SC", "SimSun", serif;
+      --font-en: "Times New Roman", Times, serif;
+      --font-trajan: "Trajan Pro", "Trajan Pro 3", "Cinzel", Georgia, serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+    }
+
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 12% 10%, rgba(255, 255, 255, 0.12), transparent 26%),
+        linear-gradient(180deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.82)),
+        url("assets/home-bg.jpg") center/cover fixed,
+        var(--bg);
+      color: var(--fg);
+      font-family: var(--font-cn);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(255,255,255,.02) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,.75), transparent 86%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page-shell {
+      position: relative;
+      z-index: 1;
+      width: min(100% - 36px, 1180px);
+      margin: 0 auto;
+      padding: 18px 0 34px;
+    }
+
+    .glass-panel {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.095), rgba(255,255,255,.035));
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(28px) saturate(1.18);
+      -webkit-backdrop-filter: blur(28px) saturate(1.18);
+    }
+
+    .site-header {
+      position: sticky;
+      top: 18px;
+      z-index: 20;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+      min-height: 76px;
+      padding: 14px 16px 14px 18px;
+      border-radius: var(--radius-xl);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-trajan);
+      font-size: clamp(18px, 2vw, 27px);
+      letter-spacing: 0.11em;
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      width: 30px;
+      height: 30px;
+      border: 1px solid rgba(255,255,255,.36);
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(255,255,255,.82) 0 2px, transparent 3px),
+        repeating-conic-gradient(from 0deg, rgba(255,255,255,.32) 0deg 10deg, transparent 10deg 20deg),
+        rgba(255,255,255,.045);
+    }
+
+    .nav {
+      display: flex;
+      gap: 4px;
+      padding: 5px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(0,0,0,.22);
+      font-family: var(--font-trajan);
+    }
+
+    .nav a {
+      padding: 9px 13px;
+      border-radius: 999px;
+      color: rgba(245,245,245,.68);
+      font-size: 14px;
+      letter-spacing: .055em;
+      white-space: nowrap;
+    }
+
+    .nav a:hover,
+    .nav a[aria-current="page"] {
+      color: var(--fg);
+      background: rgba(255,255,255,.09);
+    }
+
+    main {
+      padding: clamp(42px, 7vw, 92px) 0 28px;
+    }
+
+    .archive-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(280px, .95fr);
+      gap: 18px;
+      align-items: stretch;
+      margin-bottom: 18px;
+    }
+
+    .archive-intro,
+    .upload-guide {
+      border-radius: var(--radius-xl);
+      padding: clamp(22px, 3.4vw, 38px);
+    }
+
+    .eyebrow {
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-family: var(--font-en);
+      font-size: 13px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 780px;
+      margin: 0 0 18px;
+      font-family: var(--font-en);
+      font-size: clamp(44px, 6.4vw, 86px);
+      font-weight: 400;
+      line-height: .98;
+      letter-spacing: -.055em;
+    }
+
+    .lead {
+      max-width: 760px;
+      color: rgba(245,245,245,.74);
+      font-size: 16px;
+      line-height: 1.9;
+    }
+
+    .upload-guide strong {
+      display: block;
+      margin-bottom: 14px;
+      color: rgba(245,245,245,.92);
+      font-family: var(--font-en);
+      font-size: 15px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .upload-guide ol {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding-left: 18px;
+      color: rgba(245,245,245,.7);
+      font-size: 14px;
+      line-height: 1.68;
+    }
+
+    .archive-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 18px 0;
+    }
+
+    .archive-tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 32px;
+      padding: 0 13px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,.07);
+      color: rgba(245,245,245,.76);
+      font-family: var(--font-en);
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .masonry {
+      column-count: 3;
+      column-gap: 16px;
+      margin-top: 18px;
+    }
+
+    .photo-card {
+      display: inline-block;
+      width: 100%;
+      margin: 0 0 16px;
+      break-inside: avoid;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: transform 260ms ease, border-color 260ms ease, box-shadow 260ms ease;
+    }
+
+    .photo-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255,255,255,.24);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .photo-frame {
+      min-height: var(--height, 360px);
+      background:
+        radial-gradient(circle at 26% 18%, rgba(255,255,255,.34), transparent 24%),
+        linear-gradient(135deg, var(--tone-a, rgba(154,133,107,.55)), var(--tone-b, rgba(30,30,30,.86)));
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+
+    .photo-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .photo-meta {
+      padding: 18px;
+    }
+
+    .photo-meta h2 {
+      margin: 0 0 12px;
+      font-family: var(--font-en);
+      font-size: clamp(24px, 2.8vw, 34px);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -.045em;
+    }
+
+    .photo-meta dl {
+      display: grid;
+      gap: 8px;
+      margin: 0;
+      color: rgba(245,245,245,.68);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .photo-meta div {
+      display: flex;
+      gap: 10px;
+    }
+
+    .photo-meta dt {
+      min-width: 44px;
+      color: rgba(245,245,245,.46);
+      font-family: var(--font-en);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .workflow-block {
+      margin-top: 18px;
+      border-radius: var(--radius-xl);
+      padding: clamp(22px, 3.4vw, 36px);
+    }
+
+    .workflow-block h2 {
+      margin: 0 0 18px;
+      font-family: var(--font-en);
+      font-size: clamp(30px, 4.2vw, 54px);
+      font-weight: 400;
+      letter-spacing: -.045em;
+    }
+
+    .workflow-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+      gap: 12px;
+    }
+
+    .workflow-step {
+      padding: 18px;
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 22px;
+      background: rgba(0,0,0,.14);
+    }
+
+    .workflow-step span {
+      display: block;
+      margin-bottom: 10px;
+      color: rgba(245,245,245,.52);
+      font-family: var(--font-en);
+      font-size: 12px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .workflow-step p {
+      color: rgba(245,245,245,.72);
+      font-size: 14px;
+      line-height: 1.72;
+    }
+
+    .site-footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+      margin-top: 22px;
+      padding: 18px 20px;
+      border-radius: var(--radius-xl);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 980px) {
+      .archive-hero {
+        grid-template-columns: 1fr;
+      }
+
+      .masonry {
+        column-count: 2;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .site-header {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        overflow-x: auto;
+      }
+
+      .masonry {
+        column-count: 1;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .page-shell {
+        width: min(100% - 22px, 1120px);
+        padding-top: 12px;
+      }
+
+      .site-header,
+      .archive-intro,
+      .upload-guide,
+      .photo-card,
+      .workflow-block,
+      .site-footer {
+        border-radius: 22px;
+      }
+
+      h1 {
+        font-size: clamp(40px, 14vw, 64px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header glass-panel">
+      <a class="brand" href="index.html" aria-label="Back to homepage">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>ZHANG YIHONG</span>
+      </a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="research.html" target="_blank" rel="noopener">Research</a>
+        <a href="index.html#cv">CV</a>
+        <a href="visual-archive.html" aria-current="page">Photography</a>
+        <a href="contact.html" target="_blank" rel="noopener">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="archive-hero">
+        <div class="archive-intro glass-panel">
+          <p class="eyebrow">Photography Portfolio</p>
+          <h1>Visual Archive</h1>
+          <p class="lead">这里用于集中展示摄影作品。每张照片都保留时间与地点信息，之后可以继续按旅行、城市、人物、日常观察或研究田野素材来扩展。</p>
+        </div>
+        <aside class="upload-guide glass-panel">
+          <strong>Upload Workflow</strong>
+          <ol>
+            <li>把照片上传到仓库的 <code>assets/photography/</code> 文件夹。</li>
+            <li>复制页面下方注释中的照片卡片模板。</li>
+            <li>把图片路径、时间、地点和标题替换成新作品信息。</li>
+            <li>提交后等待 GitHub Pages 自动更新。</li>
+          </ol>
+        </aside>
+      </section>
+
+      <div class="archive-toolbar" aria-label="Archive categories">
+        <span class="archive-tag">Travel</span>
+        <span class="archive-tag">City Notes</span>
+        <span class="archive-tag">Field Memory</span>
+        <span class="archive-tag">Daily Observation</span>
+      </div>
+
+      <section class="masonry" aria-label="Photography works">
+        <article class="photo-card glass-panel">
+          <div class="photo-frame" style="--height: 420px; --tone-a: rgba(136,115,92,.72); --tone-b: rgba(20,28,32,.9);" aria-label="Photo placeholder"></div>
+          <div class="photo-meta">
+            <h2>Untitled Frame 01</h2>
+            <dl>
+              <div><dt>Time</dt><dd>待补充</dd></div>
+              <div><dt>Place</dt><dd>待补充</dd></div>
+            </dl>
+          </div>
+        </article>
+
+        <article class="photo-card glass-panel">
+          <div class="photo-frame" style="--height: 310px; --tone-a: rgba(93,112,119,.74); --tone-b: rgba(16,18,22,.92);" aria-label="Photo placeholder"></div>
+          <div class="photo-meta">
+            <h2>Untitled Frame 02</h2>
+            <dl>
+              <div><dt>Time</dt><dd>待补充</dd></div>
+              <div><dt>Place</dt><dd>待补充</dd></div>
+            </dl>
+          </div>
+        </article>
+
+        <article class="photo-card glass-panel">
+          <div class="photo-frame" style="--height: 520px; --tone-a: rgba(169,146,105,.66); --tone-b: rgba(25,21,18,.92);" aria-label="Photo placeholder"></div>
+          <div class="photo-meta">
+            <h2>Untitled Frame 03</h2>
+            <dl>
+              <div><dt>Time</dt><dd>待补充</dd></div>
+              <div><dt>Place</dt><dd>待补充</dd></div>
+            </dl>
+          </div>
+        </article>
+
+        <article class="photo-card glass-panel">
+          <div class="photo-frame" style="--height: 360px; --tone-a: rgba(88,94,80,.7); --tone-b: rgba(10,16,15,.94);" aria-label="Photo placeholder"></div>
+          <div class="photo-meta">
+            <h2>Untitled Frame 04</h2>
+            <dl>
+              <div><dt>Time</dt><dd>待补充</dd></div>
+              <div><dt>Place</dt><dd>待补充</dd></div>
+            </dl>
+          </div>
+        </article>
+
+        <article class="photo-card glass-panel">
+          <div class="photo-frame" style="--height: 470px; --tone-a: rgba(132,103,88,.72); --tone-b: rgba(22,16,18,.9);" aria-label="Photo placeholder"></div>
+          <div class="photo-meta">
+            <h2>Untitled Frame 05</h2>
+            <dl>
+              <div><dt>Time</dt><dd>待补充</dd></div>
+              <div><dt>Place</dt><dd>待补充</dd></div>
+            </dl>
+          </div>
+        </article>
+
+        <article class="photo-card glass-panel">
+          <div class="photo-frame" style="--height: 335px; --tone-a: rgba(105,114,128,.68); --tone-b: rgba(12,14,20,.92);" aria-label="Photo placeholder"></div>
+          <div class="photo-meta">
+            <h2>Untitled Frame 06</h2>
+            <dl>
+              <div><dt>Time</dt><dd>待补充</dd></div>
+              <div><dt>Place</dt><dd>待补充</dd></div>
+            </dl>
+          </div>
+        </article>
+      </section>
+
+      <section class="workflow-block glass-panel" aria-labelledby="workflow-title">
+        <p class="eyebrow">How to Add Photos</p>
+        <h2 id="workflow-title">上传照片流程</h2>
+        <div class="workflow-grid">
+          <div class="workflow-step">
+            <span>Step 01</span>
+            <p>在 GitHub 仓库中进入 <code>assets/photography/</code>，点击上传文件，把照片命名为 <code>photo-01.jpg</code>、<code>photo-02.jpg</code> 这种简洁格式。</p>
+          </div>
+          <div class="workflow-step">
+            <span>Step 02</span>
+            <p>打开 <code>visual-archive.html</code>，复制一段 <code>photo-card</code> 卡片，把图片路径改成 <code>assets/photography/你的照片名.jpg</code>。</p>
+          </div>
+          <div class="workflow-step">
+            <span>Step 03</span>
+            <p>把标题、时间和地点改成真实信息，例如 <code>2026.08</code>、<code>Xiamen, China</code> 或其它拍摄地点。</p>
+          </div>
+          <div class="workflow-step">
+            <span>Step 04</span>
+            <p>提交修改后等待 GitHub Pages 刷新，再打开 Photography 或 Visual Archive 检查瀑布流是否显示正常。</p>
+          </div>
+        </div>
+      </section>
+
+      <!--
+      新增真实照片时，把下面模板复制到 masonry 区域内：
+
+      <article class="photo-card glass-panel">
+        <img src="assets/photography/photo-01.jpg" alt="这里写照片说明" loading="lazy">
+        <div class="photo-meta">
+          <h2>照片标题</h2>
+          <dl>
+            <div><dt>Time</dt><dd>2026.08</dd></div>
+            <div><dt>Place</dt><dd>Xiamen, China</dd></div>
+          </dl>
+        </div>
+      </article>
+      -->
+    </main>
+
+    <footer class="site-footer glass-panel">
+      <span>© <span id="year">2026</span> ZHANG YIHONG. Visual notes and photography archive.</span>
+      <a href="index.html">Back to Home</a>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
