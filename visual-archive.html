@@ -140,14 +140,13 @@
 
     .archive-hero {
       display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(280px, .95fr);
+      grid-template-columns: 1fr;
       gap: 18px;
       align-items: stretch;
       margin-bottom: 18px;
     }
 
-    .archive-intro,
-    .upload-guide {
+    .archive-intro {
       border-radius: var(--radius-xl);
       padding: clamp(22px, 3.4vw, 38px);
     }
@@ -176,26 +175,6 @@
       color: rgba(245,245,245,.74);
       font-size: 16px;
       line-height: 1.9;
-    }
-
-    .upload-guide strong {
-      display: block;
-      margin-bottom: 14px;
-      color: rgba(245,245,245,.92);
-      font-family: var(--font-en);
-      font-size: 15px;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-
-    .upload-guide ol {
-      display: grid;
-      gap: 10px;
-      margin: 0;
-      padding-left: 18px;
-      color: rgba(245,245,245,.7);
-      font-size: 14px;
-      line-height: 1.68;
     }
 
     .archive-toolbar {
@@ -291,49 +270,6 @@
       text-transform: uppercase;
     }
 
-    .workflow-block {
-      margin-top: 18px;
-      border-radius: var(--radius-xl);
-      padding: clamp(22px, 3.4vw, 36px);
-    }
-
-    .workflow-block h2 {
-      margin: 0 0 18px;
-      font-family: var(--font-en);
-      font-size: clamp(30px, 4.2vw, 54px);
-      font-weight: 400;
-      letter-spacing: -.045em;
-    }
-
-    .workflow-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
-      gap: 12px;
-    }
-
-    .workflow-step {
-      padding: 18px;
-      border: 1px solid rgba(255,255,255,.11);
-      border-radius: 22px;
-      background: rgba(0,0,0,.14);
-    }
-
-    .workflow-step span {
-      display: block;
-      margin-bottom: 10px;
-      color: rgba(245,245,245,.52);
-      font-family: var(--font-en);
-      font-size: 12px;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-    }
-
-    .workflow-step p {
-      color: rgba(245,245,245,.72);
-      font-size: 14px;
-      line-height: 1.72;
-    }
-
     .site-footer {
       display: flex;
       justify-content: space-between;
@@ -379,9 +315,7 @@
 
       .site-header,
       .archive-intro,
-      .upload-guide,
       .photo-card,
-      .workflow-block,
       .site-footer {
         border-radius: 22px;
       }
@@ -415,15 +349,6 @@
           <h1>Visual Archive</h1>
           <p class="lead">这里用于集中展示摄影作品。每张照片都保留时间与地点信息，之后可以继续按旅行、城市、人物、日常观察或研究田野素材来扩展。</p>
         </div>
-        <aside class="upload-guide glass-panel">
-          <strong>Upload Workflow</strong>
-          <ol>
-            <li>把照片上传到仓库的 <code>assets/photography/</code> 文件夹。</li>
-            <li>复制页面下方注释中的照片卡片模板。</li>
-            <li>把图片路径、时间、地点和标题替换成新作品信息。</li>
-            <li>提交后等待 GitHub Pages 自动更新。</li>
-          </ol>
-        </aside>
       </section>
 
       <div class="archive-toolbar" aria-label="Archive categories">
@@ -501,43 +426,6 @@
         </article>
       </section>
 
-      <section class="workflow-block glass-panel" aria-labelledby="workflow-title">
-        <p class="eyebrow">How to Add Photos</p>
-        <h2 id="workflow-title">上传照片流程</h2>
-        <div class="workflow-grid">
-          <div class="workflow-step">
-            <span>Step 01</span>
-            <p>在 GitHub 仓库中进入 <code>assets/photography/</code>，点击上传文件，把照片命名为 <code>photo-01.jpg</code>、<code>photo-02.jpg</code> 这种简洁格式。</p>
-          </div>
-          <div class="workflow-step">
-            <span>Step 02</span>
-            <p>打开 <code>visual-archive.html</code>，复制一段 <code>photo-card</code> 卡片，把图片路径改成 <code>assets/photography/你的照片名.jpg</code>。</p>
-          </div>
-          <div class="workflow-step">
-            <span>Step 03</span>
-            <p>把标题、时间和地点改成真实信息，例如 <code>2026.08</code>、<code>Xiamen, China</code> 或其它拍摄地点。</p>
-          </div>
-          <div class="workflow-step">
-            <span>Step 04</span>
-            <p>提交修改后等待 GitHub Pages 刷新，再打开 Photography 或 Visual Archive 检查瀑布流是否显示正常。</p>
-          </div>
-        </div>
-      </section>
-
-      <!--
-      新增真实照片时，把下面模板复制到 masonry 区域内：
-
-      <article class="photo-card glass-panel">
-        <img src="assets/photography/photo-01.jpg" alt="这里写照片说明" loading="lazy">
-        <div class="photo-meta">
-          <h2>照片标题</h2>
-          <dl>
-            <div><dt>Time</dt><dd>2026.08</dd></div>
-            <div><dt>Place</dt><dd>Xiamen, China</dd></div>
-          </dl>
-        </div>
-      </article>
-      -->
     </main>
 
     <footer class="site-footer glass-panel">
