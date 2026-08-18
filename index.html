@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="zh-CN" style="--img-0: url(&quot;assets/home-bg.jpg&quot;); --active-bg: url(&quot;assets/home-bg.jpg&quot;);" data-theme="light" class=""><head>
+<html lang="zh-CN" data-theme="light" class=""><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ZHANG YIHONG | Personal Website</title>
   <style>
     :root {
       color-scheme: dark;
-      --active-bg: url("assets/home-bg.jpg");
+      
       --bg: #090909;
       --fg: #f5f5f5;
       --muted: #a1a1a1;
@@ -58,7 +58,7 @@
     }
 
     body::before {
-      background-image: var(--active-bg);
+      background-image: url("assets/home-bg.jpg");
       background-size: cover;
       background-position: center;
       filter: blur(0.5px) saturate(0.98) brightness(0.78) contrast(1.03);
@@ -115,21 +115,7 @@
       gap: 12px;
       justify-self: start;
     }
-
-    .rosette {
-      width: 34px;
-      height: 34px;
-      flex: 0 0 auto;
-      border: 1px solid rgba(255, 255, 255, 0.24);
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.045);
-      object-fit: contain;
-      padding: 3px;
-      filter: grayscale(1) brightness(1.65) contrast(0.82) drop-shadow(0 0 18px rgba(255, 255, 255, 0.1));
-      opacity: 0.9;
-    }
-
-    .brand-name {
+.brand-name {
       font-family: var(--font-trajan);
       font-size: clamp(18px, 2vw, 27px);
       letter-spacing: 0.11em;
@@ -393,25 +379,7 @@
       box-shadow: var(--shadow-hover);
     }
 
-    .card-mark {
-      position: relative;
-      width: 44px;
-      height: 44px;
-      margin: 16px 18px 0;
-      border: 1px solid var(--line);
-      border-radius: 50%;
-      overflow: hidden;
-      background: rgba(255, 255, 255, 0.045) url("assets/site-mark-gray.png") center/78% 78% no-repeat;
-      box-shadow: inset 0 0 26px rgba(255, 255, 255, 0.05);
-      filter: grayscale(1) brightness(1.65) contrast(0.82);
-      opacity: 0.92;
-    }
-
-    .card-mark::after {
-      content: none;
-    }
-
-    .card-body {
+.card-body {
       position: relative;
       z-index: 1;
       display: flex;
@@ -649,17 +617,16 @@
 <body>
   <div class="page-shell">
     <header class="site-header glass-panel">
-      <a class="brand pressable" href="#home" target="_blank" rel="noopener" aria-label="Open home in a new tab" data-bg-index="0">
-        <img class="rosette" src="assets/site-mark-gray.png" alt="" aria-hidden="true">
-        <span class="brand-name">ZHANG YIHONG</span>
+      <a class="brand pressable" href="#home" target="_blank" rel="noopener" aria-label="Open home in a new tab">
+<span class="brand-name">ZHANG YIHONG</span>
       </a>
       <nav class="nav" aria-label="Primary navigation">
-        <a href="#home" target="_blank" rel="noopener" data-bg-index="0">Home</a>
-        <a href="#about" target="_blank" rel="noopener" data-bg-index="1">About</a>
-        <a href="research.html" target="_blank" rel="noopener" data-bg-index="2">Research</a>
-        <a href="cv.html" target="_blank" rel="noopener" data-bg-index="3">CV</a>
-        <a href="visual-archive.html" target="_blank" rel="noopener" data-bg-index="4">Photography</a>
-        <a href="contact.html" target="_blank" rel="noopener" data-bg-index="5">Contact</a>
+        <a href="#home" target="_blank" rel="noopener">Home</a>
+        <a href="#about" target="_blank" rel="noopener">About</a>
+        <a href="research.html" target="_blank" rel="noopener">Research</a>
+        <a href="cv.html" target="_blank" rel="noopener">CV</a>
+        <a href="visual-archive.html" target="_blank" rel="noopener">Photography</a>
+        <a href="contact.html" target="_blank" rel="noopener">Contact</a>
       </nav>
     </header>
 
@@ -694,27 +661,24 @@
         </div>
 
         <div class="card-grid">
-          <a class="card glass-panel" href="research.html" target="_blank" rel="noopener" data-bg-index="2" aria-label="Open Research page in a new tab">
-            <div class="card-mark" aria-hidden="true"></div>
-            <div class="card-body">
+          <a class="card glass-panel" href="research.html" target="_blank" rel="noopener" aria-label="Open Research page in a new tab">
+<div class="card-body">
               <div class="card-kicker">Research</div>
               <h3>Research Agenda</h3>
               <div class="card-footer"><span>Publication Space</span><span class="mini-button pressable">Open</span></div>
             </div>
           </a>
 
-          <a class="card glass-panel" href="cv.html" target="_blank" rel="noopener" data-bg-index="3" aria-label="Open Curriculum Vitae page in a new tab">
-            <div class="card-mark" aria-hidden="true"></div>
-            <div class="card-body">
+          <a class="card glass-panel" href="cv.html" target="_blank" rel="noopener" aria-label="Open Curriculum Vitae page in a new tab">
+<div class="card-body">
               <div class="card-kicker">CV</div>
               <h3>Curriculum Vitae</h3>
               <div class="card-footer"><span>Resume</span><span class="mini-button pressable">Open</span></div>
             </div>
           </a>
 
-          <a class="card glass-panel" href="visual-archive.html" target="_blank" rel="noopener" data-bg-index="4" aria-label="Open Visual Archive page in a new tab">
-            <div class="card-mark" aria-hidden="true"></div>
-            <div class="card-body">
+          <a class="card glass-panel" href="visual-archive.html" target="_blank" rel="noopener" aria-label="Open Visual Archive page in a new tab">
+<div class="card-body">
               <div class="card-kicker">Photography</div>
               <h3>Visual Archive</h3>
               <div class="card-footer"><span>Gallery</span><span class="mini-button pressable">Open</span></div>
@@ -737,25 +701,7 @@
   </div>
 
   <script>
-    const embeddedImages = ["assets/home-bg.jpg"];
-    embeddedImages.forEach((src, index) => {
-      document.documentElement.style.setProperty(`--img-${index}`, `url("${src}")`);
-    });
-    document.documentElement.style.setProperty("--active-bg", `url("${embeddedImages[0]}")`);
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    const switchBackground = (index) => {
-      const image = embeddedImages[index % embeddedImages.length];
-      document.documentElement.style.setProperty("--active-bg", `url("${image}")`);
-    };
-
-    document.querySelectorAll("[data-bg-index]").forEach((element) => {
-      const index = Number(element.dataset.bgIndex || 0);
-      element.addEventListener("mouseenter", () => switchBackground(index));
-      element.addEventListener("focus", () => switchBackground(index));
-    });
-
-    document.querySelectorAll(".pressable").forEach((button) => {
+document.querySelectorAll(".pressable").forEach((button) => {
       const spring = [
         { transform: "translateY(2px) scale(0.975)" },
         { transform: "translateY(-2px) scale(1.018)", offset: 0.42 },
