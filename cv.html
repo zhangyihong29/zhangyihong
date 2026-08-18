@@ -33,8 +33,7 @@
     body {
       min-height: 100vh;
       background:
-        radial-gradient(circle at 12% 10%, rgba(255, 255, 255, 0.12), transparent 26%),
-        linear-gradient(180deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.82)),
+        linear-gradient(180deg, rgba(0, 0, 0, 0.22), rgba(0, 0, 0, 0.42) 58%, rgba(9, 9, 9, 0.74)),
         url("assets/home-bg.jpg") center/cover fixed,
         var(--bg);
       color: var(--fg);
@@ -117,6 +116,12 @@
       border-radius: 999px;
       background: rgba(0,0,0,.22);
       font-family: var(--font-trajan);
+          scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .nav::-webkit-scrollbar {
+      display: none;
     }
 
     .nav a {
