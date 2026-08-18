@@ -143,12 +143,12 @@
       grid-template-columns: 1fr;
       gap: 18px;
       align-items: stretch;
-      margin-bottom: 18px;
+      margin-bottom: 14px;
     }
 
     .archive-intro {
       border-radius: var(--radius-xl);
-      padding: clamp(22px, 3.4vw, 38px);
+      padding: clamp(18px, 2.8vw, 30px);
     }
 
     .eyebrow {
@@ -162,7 +162,7 @@
 
     h1 {
       max-width: 780px;
-      margin: 0 0 18px;
+      margin: 0;
       font-family: var(--font-en);
       font-size: clamp(44px, 6.4vw, 86px);
       font-weight: 400;
@@ -170,39 +170,10 @@
       letter-spacing: -.055em;
     }
 
-    .lead {
-      max-width: 760px;
-      color: rgba(245,245,245,.74);
-      font-size: 16px;
-      line-height: 1.9;
-    }
-
-    .archive-toolbar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 18px 0;
-    }
-
-    .archive-tag {
-      display: inline-flex;
-      align-items: center;
-      min-height: 32px;
-      padding: 0 13px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: rgba(255,255,255,.07);
-      color: rgba(245,245,245,.76);
-      font-family: var(--font-en);
-      font-size: 12px;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-
     .masonry {
       column-count: 3;
       column-gap: 16px;
-      margin-top: 18px;
+      margin-top: 14px;
     }
 
     .photo-card {
@@ -347,16 +318,8 @@
         <div class="archive-intro glass-panel">
           <p class="eyebrow">Photography Portfolio</p>
           <h1>Visual Archive</h1>
-          <p class="lead">这里用于集中展示摄影作品。每张照片都保留时间与地点信息，之后可以继续按旅行、城市、人物、日常观察或研究田野素材来扩展。</p>
         </div>
       </section>
-
-      <div class="archive-toolbar" aria-label="Archive categories">
-        <span class="archive-tag">Travel</span>
-        <span class="archive-tag">City Notes</span>
-        <span class="archive-tag">Field Memory</span>
-        <span class="archive-tag">Daily Observation</span>
-      </div>
 
       <section class="masonry" aria-label="Photography works">
         <article class="photo-card glass-panel">
